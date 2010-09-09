@@ -15,7 +15,7 @@ GEM_VERSION        = Remarkable::VERSION
 PACKAGE_DIR        = File.join(File.dirname(__FILE__), 'pkg')
 RELEASE_NAME       = "REL #{GEM_VERSION}"
 
-RSPEC_VERSION      = '1.2.0'
+RSPEC_VERSION      = ENV['RSPEC_VERSION'] || '2.0.0.beta.20'
 
 def self.configure_gemspec!
   $spec = Gem::Specification.new do |s|
@@ -63,13 +63,23 @@ end
 
 ########### Common specs
 
-gem 'rspec'
-require 'spec/rake/spectask'
+gem 'rspec', RSPEC_VERSION
+if RSPEC_VERSION.match /^2\./
+  require 'rspec'
+  require 'rspec/core/rake_task'
 
-desc "Run the specs under spec"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_opts = ['--options', "spec/spec.opts"]
-  t.spec_files = FileList['spec/**/*_spec.rb']
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.pattern   = FileList['spec/**/*_spec.rb']
+  end
+else
+  require 'spec/rake/spectask'
+
+  desc "Run the specs under spec"
+  Spec::Rake::SpecTask.new do |t|
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.spec_files = FileList['spec/**/*_spec.rb']
+  end
 end
 
 ########## Common rdoc

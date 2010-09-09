@@ -19,6 +19,9 @@ RUBY_FORGE_PROJECT = "remarkable"
 GEM_VERSION        = Remarkable::VERSION
 PACKAGE_DIR        = File.join(File.dirname(__FILE__), 'pkg')
 
+RAILS_VERSION = ENV['RAILS_VERSION'] || '3.0.0'
+RSPEC_VERSION = ENV['RSPEC_VERSION'] || '2.0.0.beta.20'
+
 # Create tasks that are called inside remarkable path
 def self.unique_tasks(*names)
   names.each do |name|

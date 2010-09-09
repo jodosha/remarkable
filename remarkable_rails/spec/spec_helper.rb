@@ -1,7 +1,7 @@
 require 'rubygems'
 
 RAILS_ENV     = 'test'
-RAILS_VERSION = ENV['RAILS_VERSION'] || '2.3.5'
+RAILS_VERSION = ENV['RAILS_VERSION'] || '3.0.0'
 
 # Load Rails
 gem 'activesupport', RAILS_VERSION
