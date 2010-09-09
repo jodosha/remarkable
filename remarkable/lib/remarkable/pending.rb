@@ -57,9 +57,9 @@ module Remarkable
           proc{ pending(pending_description) }
         end
 
-        example_without_pending(description, options, backtrace || pending_caller, &pending_block)
+        example_without_pending(description, options.merge(:caller => backtrace || pending_caller), &pending_block)
       else
-        example_without_pending(description, options, backtrace || caller(0)[1], &implementation)
+        example_without_pending(description, options.merge(:caller => backtrace || caller(0)[1]), &implementation)
       end
     end
 
