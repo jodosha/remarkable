@@ -4,7 +4,7 @@
 # TODO: !!! These functions are not all updated yet
 module ModelBuilder
   def self.included(base)
-    return unless base.name =~ /^Spec/
+    return unless base.name =~ /^RSpec/
 
     base.class_eval do
       after(:each) do

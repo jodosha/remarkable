@@ -2,6 +2,7 @@ require 'rubygems'
 
 RAILS_ENV     = 'test'
 RAILS_VERSION = ENV['RAILS_VERSION'] || '3.0.0'
+RSPEC_VERSION = ENV['RSPEC_VERSION'] || '2.0.0.beta.20' unless defined?(RSPEC_VERSION)
 
 # Load Rails
 gem 'activesupport', RAILS_VERSION
@@ -14,32 +15,28 @@ gem 'actionmailer', RAILS_VERSION
 require 'action_mailer'
 
 gem 'rails', RAILS_VERSION
-require 'rails/version'
+require 'rails/all'
 
 # Load Remarkable core on place to avoid gem to be loaded
 dir = File.dirname(__FILE__)
 require File.join(dir, '..', '..', 'remarkable', 'lib', 'remarkable')
 
 # Add spec/application to load path and set view_paths
-RAILS_ROOT = File.join(dir, 'application')
-$:.unshift(RAILS_ROOT)
+_RAILS_ROOT = File.join(dir, 'application')
+$:.unshift(_RAILS_ROOT)
 
-ActionController::Base.view_paths = RAILS_ROOT
-require File.join(RAILS_ROOT, 'application')
-require File.join(RAILS_ROOT, 'tasks_controller')
+ActionController::Base.view_paths = _RAILS_ROOT
+require File.join(_RAILS_ROOT, 'application')
+require File.join(_RAILS_ROOT, 'tasks_controller')
 
 # Load Remarkable Rails
 require File.join(dir, 'functional_builder')
 
-# Load spec-rails
-if ENV['RSPEC_VERSION']
-  gem 'rspec-rails', ENV['RSPEC_VERSION']
-else
-  gem 'rspec-rails'
-end
-require 'spec/rails'
+gem 'rspec-rails', RSPEC_VERSION
+require 'rspec-rails'
 
+$:.unshift File.join(dir, '..', '..', 'remarkable_activerecord', 'lib')
 require File.join(dir, '..', 'lib', 'remarkable_rails')
 
 # Register folders to example groups
-Spec::Example::ExampleGroupFactory.register(:action_controller, Spec::Rails::Example::ControllerExampleGroup)
+Spec::Example::ExampleGroupFactory.register(:action_controller, RSpec::Rails::Example::ControllerExampleGroup)

@@ -10,13 +10,13 @@ unless Object.const_defined?('Remarkable')
 end
 
 # Load spec/rails
-if defined?(Spec)
+if defined?(RSpec)
   begin
-    require 'spec/rails'
+    require 'rspec-rails'
   rescue LoadError
     require 'rubygems'
     gem 'rspec-rails'
-    require 'spec/rails'
+    require 'spec-rails'
   end
 end
 
@@ -43,7 +43,7 @@ Remarkable.add_locale File.join(dir, '..', 'locale', 'en.yml')
 # a new namespace, like MyPlugin::Matchers, he has to tell Remarkable to include
 # them in the proper example group:
 #
-#   Remarkable.include_matchers!(MyPlugin::Matchers, Spec::Rails::Example::ModelExampleGroup)
+#   Remarkable.include_matchers!(MyPlugin::Matchers, RSpec::Rails::Example::ModelExampleGroup)
 #
 if defined?(RAILS_ROOT)
   files = []

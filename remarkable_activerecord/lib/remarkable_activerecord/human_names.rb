@@ -1,5 +1,5 @@
-if defined?(Spec)
-  module Spec #:nodoc:
+if defined?(RSpec)
+  module RSpec #:nodoc:
     module Example #:nodoc:
       module ExampleGroupMethods #:nodoc:
 

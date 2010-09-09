@@ -13,7 +13,7 @@ if defined?(ActiveRecord::Base)
   end
 
   # Include Remarkable ActiveRecord matcher in appropriate ExampleGroup
-  if defined?(Spec::Rails)
-    Remarkable.include_matchers!(Remarkable::ActiveRecord, Spec::Rails::Example::ModelExampleGroup)
+  if defined?(RSpec::Rails)
+    Remarkable.include_matchers!(Remarkable::ActiveRecord, RSpec::Rails::Example::ModelExampleGroup)
   end
 end

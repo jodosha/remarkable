@@ -3,7 +3,7 @@
 module FunctionalBuilder
   def self.included(base)
     base.class_eval do
-      return unless base.name =~ /^Spec/
+      return unless base.name =~ /^RSpec/
 
       base.controller_name 'application'
       base.integrate_views false

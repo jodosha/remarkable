@@ -66,11 +66,11 @@ end
 gem 'rspec', RSPEC_VERSION
 if RSPEC_VERSION.match /^2\./
   require 'rspec'
+  require File.dirname(__FILE__) + '/patch'
   require 'rspec/core/rake_task'
 
   RSpec::Core::RakeTask.new(:spec) do |t|
-    t.spec_opts = ['--options', "spec/spec.opts"]
-    t.pattern   = FileList['spec/**/*_spec.rb']
+    t.pattern = FileList['spec/**/*_spec.rb']
   end
 else
   require 'spec/rake/spectask'

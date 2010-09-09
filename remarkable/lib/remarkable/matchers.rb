@@ -12,7 +12,7 @@ module Remarkable
   def self.include_matchers!(base, target=nil)
     if target.nil?
       if rspec_defined?
-        target = Spec::Example::ExampleGroup
+        target = RSpec::Example::ExampleGroup
       else
         raise ArgumentError, "You haven't supplied the target to include_matchers! and RSpec is not loaded, so we cannot infer one."
       end
@@ -35,6 +35,6 @@ module Remarkable
   end
 
   def self.rspec_defined? #:nodoc:
-    defined?(Spec)
+    defined?(RSpec)
   end
 end

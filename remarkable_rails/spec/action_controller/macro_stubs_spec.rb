@@ -87,13 +87,13 @@ describe 'MacroStubs' do
 
       lambda {
         run_action!(true)
-      }.should raise_error(Spec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \("42"\)\n       got: \("37"\)/)
+      }.should raise_error(RSpec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \("42"\)\n       got: \("37"\)/)
     end
 
     it 'should fail if expectations are received out of order' do
       lambda {
         run_action!(true)
-      }.should raise_error(Spec::Mocks::MockExpectationError, /received :count out of order/)
+      }.should raise_error(RSpec::Mocks::MockExpectationError, /received :count out of order/)
     end
 
     it 'should splat an array given to with' do
@@ -102,7 +102,7 @@ describe 'MacroStubs' do
 
       lambda {
         Task.find([1,2,3])
-      }.should raise_error(Spec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \(1\, 2\, 3\)\n       got: \(\[1\, 2\, 3\]\)/)
+      }.should raise_error(RSpec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \(1\, 2\, 3\)\n       got: \(\[1\, 2\, 3\]\)/)
 
       lambda {
         Task.find(1, 2, 3)
@@ -131,7 +131,7 @@ describe 'MacroStubs' do
       
       lambda {
         Task.find(1)
-      }.should raise_error(Spec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \("37", 1\)\n       got: \(1\)/)
+      }.should raise_error(RSpec::Mocks::MockExpectationError, /received :find with unexpected arguments\n  expected: \("37", 1\)\n       got: \(1\)/)
             
       lambda {
         Task.find("37", 1)

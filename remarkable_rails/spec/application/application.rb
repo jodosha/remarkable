@@ -6,10 +6,12 @@ end
 
 class Task; end
 
-# Define routes
-ActionController::Routing::Routes.draw do |map|
-  map.resources :projects, :has_many => :tasks
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+module MyApp
+  class Application < Rails::Application
+  end
 end
 
+MyApp::Application.routes.draw do |map|
+  resources :projects, :has_many => :tasks
+  match ':controller(/:action(/:id(.:format)))' # TODO remove
+end

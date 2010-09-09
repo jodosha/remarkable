@@ -55,4 +55,4 @@ require File.join(dir, 'model_builder')
 require File.join(dir, '..', 'lib', 'remarkable_datamapper')
 
 # Include matchers
-Remarkable.include_matchers!(Remarkable::DataMapper, Spec::Example::ExampleGroup)
+Remarkable.include_matchers!(Remarkable::DataMapper, RSpec::Example::ExampleGroup)
